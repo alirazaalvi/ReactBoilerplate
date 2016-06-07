@@ -2,10 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './index.js',
+  entry: './app/index.js',
   output: { path: __dirname, filename: 'bundle.js' },
   module: {
-    loaders: [
+	loaders: [
       {
         test: /.jsx?$/,
         loader: 'babel-loader',
