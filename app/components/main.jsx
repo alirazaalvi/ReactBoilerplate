@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Hello = () => (
+const Main = () => (
   <div>Compiled by Webpack.</div>
 );
 
-export default Hello;
+export default Main;
