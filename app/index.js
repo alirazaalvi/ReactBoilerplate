@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hello from './components/main.jsx';
+import Store from './stores/index';
+import {Provider} from 'react-redux';
+import Main from './components/main.jsx';
 
-ReactDOM.render(<Hello />, document.getElementById('content'));
+ReactDOM.render(<Provider store={Store}><Main /></Provider>, document.getElementById('content'));
