@@ -14,9 +14,8 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log(this.props.reducers);
     return <div>
-      <a href="#" onClick={this.increment}>Increment</a> :  {this.props.reducers.value}
+      <a href="#" onClick={this.increment}>Increment</a> :  {this.props.reducers.get('value')}
 
     </div>
   }
