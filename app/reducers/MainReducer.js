@@ -5,8 +5,12 @@ let initialData = Immutable.Map({value: 0});
 export default (state = initialData, action) => {
   switch (action.type) {
     case Constants.INCREMENT:
-      let newValue = state.get('value') + 1;
-      return state.set('value', newValue);
+      let incrementedValue = state.get('value') + 1;
+      return state.set('value', incrementedValue);
+      break;
+    case Constants.DECREMENT:
+      let decrementedValue = state.get('value') - 1;
+      return state.set('value', decrementedValue);
       break;
     default:
       return state;

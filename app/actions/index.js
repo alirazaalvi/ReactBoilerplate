@@ -6,3 +6,10 @@ export function increment(data) {
     data: data
   }
 }
+
+export function decrement(data) {
+  return {
+    type: Constants.DECREMENT,
+    data: data
+  }
+}
