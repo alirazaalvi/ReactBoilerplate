@@ -1,6 +1,6 @@
-import KeyMirror from 'keymirror';
+import keyMirror from 'keymirror';
 
-export default KeyMirror({
+export default keyMirror({
   INCREMENT: null,
-  DECREMENT: null
+  DECREMENT: null,
 });
