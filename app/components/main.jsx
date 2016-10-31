@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { increment, decrement } from '../actions/index';
+import {connect} from 'react-redux';
+import {increment, decrement} from '../actions/index';
 
 class Main extends React.Component {
   constructor(props) {
@@ -19,20 +19,19 @@ class Main extends React.Component {
   }
 
   render() {
-    return <div>
+    return (<div>
       <h2>Add/Remove Values</h2>
       <b><a href="#" onClick={this.decrement}>Decrease</a></b>
       &nbsp;&nbsp;
       <b><a href="#" onClick={this.increment}>Increase</a></b>
       <h3>{this.props.reducers.get('value')}</h3>
-
-    </div>
+    </div>)
   }
 }
 
 function mapStateToProps(reducers) {
   return {
-    reducers: reducers
+    reducers: reducers,
   }
 }
 

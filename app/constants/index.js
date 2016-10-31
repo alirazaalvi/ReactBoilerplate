@@ -1,6 +1,4 @@
-import keyMirror from 'keymirror';
-
-export default keyMirror({
-  INCREMENT: null,
-  DECREMENT: null,
-});
+export default {
+  INCREMENT: 'INCREMENT',
+  DECREMENT: 'DECREMENT',
+};

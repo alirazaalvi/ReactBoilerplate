@@ -1,18 +1,22 @@
 import Constants from '../constants/index';
-import Immutable from 'immutable';
+import immutable from 'immutable';
 
-let initialData = Immutable.Map({value: 0});
+const initialData = immutable.Map({ value: 0 });
 export default (state = initialData, action) => {
   switch (action.type) {
     case Constants.INCREMENT:
-      let incrementedValue = state.get('value') + 1;
-      return state.set('value', incrementedValue);
-      break;
+      {
+        const incrementedValue = state.get('value') + 1;
+        return state.set('value', incrementedValue);
+      }
     case Constants.DECREMENT:
-      let decrementedValue = state.get('value') - 1;
-      return state.set('value', decrementedValue);
-      break;
+      {
+        const decrementedValue = state.get('value') - 1;
+        return state.set('value', decrementedValue);
+      }
     default:
-      return state;
+      {
+        return state;
+      }
   }
-}
+};
