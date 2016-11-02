@@ -1,7 +1,21 @@
 {
   "extends": "airbnb",
   "rules": {
-    "indent": 2
+    "indent": 2,
+    "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Map",
+            "List"
+          ]
+        }
+      ],
+      "jsx-a11y/href-no-hash" : 0
+  },
+  "globals": {
+     "window": true,
+     "document": true
   }
 }
 
