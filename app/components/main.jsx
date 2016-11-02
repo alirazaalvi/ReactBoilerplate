@@ -1,6 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {increment, decrement} from '../actions/index';
+import { connect } from 'react-redux';
+import Immutable from 'immutable';
+import { increment, decrement } from '../actions/Index';
 
 class Main extends React.Component {
   constructor(props) {
@@ -25,14 +26,19 @@ class Main extends React.Component {
       &nbsp;&nbsp;
       <b><a href="#" onClick={this.increment}>Increase</a></b>
       <h3>{this.props.reducers.get('value')}</h3>
-    </div>)
+    </div>);
   }
 }
 
+Main.propTypes = {
+  reducers: React.PropTypes.instanceOf(Immutable.Map),
+  dispatch: React.PropTypes.func,
+};
+
 function mapStateToProps(reducers) {
   return {
-    reducers: reducers,
-  }
+    reducers,
+  };
 }
 
 export default connect(mapStateToProps)(Main);

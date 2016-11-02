@@ -1,7 +1,9 @@
-import Constants from '../constants/index';
 import immutable from 'immutable';
+import Constants from '../constants/Index';
 
-const initialData = immutable.Map({ value: 0 });
+const { Map } = immutable;
+
+const initialData = Map({ value: 0 });
 export default (state = initialData, action) => {
   switch (action.type) {
     case Constants.INCREMENT:

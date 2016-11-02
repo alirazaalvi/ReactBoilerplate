@@ -1,4 +1,4 @@
-import Constants from '../constants';
+import Constants from '../constants/Index';
 
 export function increment(data) {
   return {
