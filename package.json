@@ -7,12 +7,15 @@
     "start": "babel-node server.js",
     "webpack-validator": "webpack-validator webpack.config.js",
     "lint": "eslint --ignore-pattern **/bundle-*.js --ext .js,.jsx app/**",
+    "build": "babel-node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.1.2",
+    "extract-text-webpack-plugin": "^1.0.1",
     "immutable": "^3.8.1",
     "keymirror": "^0.1.1",
     "open": "^0.0.5",
@@ -23,9 +26,6 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "eventsource-polyfill": "^0.9.6",
-    "express": "^4.14.0",
-    "webpack-hot-middleware": "^2.13.2",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
@@ -38,8 +38,11 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.1",
     "eslint-plugin-react": "^6.7.1",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.14.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.2",
     "webpack-validator": "^2.2.9"
   }
 }
