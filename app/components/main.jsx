@@ -6,7 +6,6 @@ import { increment, decrement } from '../actions/Index';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    
     this.dispatch = props.dispatch;
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
