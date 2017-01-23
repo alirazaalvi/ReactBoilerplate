@@ -8,7 +8,8 @@
     "webpack-validator": "webpack-validator webpack.config.js",
     "lint": "eslint --ignore-pattern **/bundle-*.js --ext .js,.jsx app/**",
     "build": "babel-node build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [],
   "author": "",
@@ -43,6 +44,9 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.15.0",
-    "webpack-validator": "^2.3.0"
+    "webpack-validator": "^2.3.0",
+    "jest": "^18.1.0",
+    "react-addons-test-utils": "^15.4.2",
+    "enzyme": "^2.7.1"
   }
 }
