@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/alirazaalvi/ReactBoilerplate.svg?branch=master)](https://travis-ci.org/alirazaalvi/ReactBoilerplate)
 [![Dependencies Status](https://david-dm.org/alirazaalvi/ReactBoilerplate.svg)](https://david-dm.org/alirazaalvi/ReactBoilerplate)
 [![DevDependencies Status](https://david-dm.org/alirazaalvi/ReactBoilerplate/dev-status.svg)](https://david-dm.org/alirazaalvi/ReactBoilerplate#info=devDependencies)
 
