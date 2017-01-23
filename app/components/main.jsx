@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import { increment, decrement } from '../actions/Index';
+import { increment, decrement } from '../actions';
 
 class Main extends React.Component {
   constructor(props) {
@@ -31,8 +31,8 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  reducers: React.PropTypes.instanceOf(Immutable.Map),
-  dispatch: React.PropTypes.func,
+  reducers: React.PropTypes.instanceOf(Immutable.Map).isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(reducers) {

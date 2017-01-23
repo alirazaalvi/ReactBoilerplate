@@ -1,5 +1,5 @@
 import immutable from 'immutable';
-import Constants from '../constants/Index';
+import Constants from '../constants';
 
 const { Map } = immutable;
 
