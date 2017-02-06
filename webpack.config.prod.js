@@ -1,44 +1,122 @@
-import webpack from 'webpack';
-import path from 'path';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const webpack = require('webpack');
+const path = require('path');
 
-const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production')
-};
+const sourcePath = path.join(__dirname, './app');
+const distPath = path.join(__dirname, './dist');
+const nodeEnv = 'production';
 
-export default {
-  debug: true,
+const plugins = [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: Infinity,
+    filename: 'vendor.bundle.js',
+  }),
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
+  }),
+  new webpack.NamedModulesPlugin(),
+];
+
+plugins.push(
+      new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          screw_ie8: true,
+          conditionals: true,
+          unused: true,
+          comparisons: true,
+          sequences: true,
+          dead_code: true,
+          evaluate: true,
+          if_return: true,
+          join_vars: true,
+        },
+        output: {
+          comments: false,
+        },
+      }),
+    );
+
+
+module.exports = {
   devtool: 'source-map',
-  noInfo: false,
-  entry: './app/Index.jsx',
-  target: 'web',
+  context: sourcePath,
+  entry: {
+    js: './index.jsx',
+    vendor: ['react', 'immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
+  },
   output: {
-    path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: distPath,
+    filename: '[name].bundle.js',
   },
-  devServer: {
-    contentBase: './dist'
-  },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin(GLOBALS),
-    new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  ],
   module: {
-    loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
-      {test: /\.jsx$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
-      {test: /(\.css)$/, loader: ExtractTextPlugin.extract("css?sourceMap")},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
-      {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
-    ]
+    rules: [
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'file-loader',
+          query: {
+            name: '[name].[ext]',
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
-  }
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+      sourcePath,
+    ],
+  },
+
+  plugins,
+  stats: {
+    colors: {
+      green: '\u001b[32m',
+    },
+  },
+
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: true,
+    port: 3000,
+    compress: true,
+    inline: false,
+    hot: false,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      timings: true,
+      version: false,
+      warnings: true,
+      colors: {
+        green: '\u001b[32m',
+      },
+    },
+  },
 };

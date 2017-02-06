@@ -1,44 +1,100 @@
-import path from 'path';
-import webpack from 'webpack';
+const webpack = require('webpack');
+const path = require('path');
 
-export default {
-  debug: true,
-  devtool: 'cheap-module-eval-source-map',
-  noInfo: false,
-  entry: [
-    'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    './app/Index.jsx'
-  ],
-  target: 'web',
-  output: { path: __dirname, filename: 'bundle.js' },
-  devServer: {
-    contentBase: './app'
+const sourcePath = path.join(__dirname, './app');
+const distPath = path.join(__dirname, './dist/');
+const nodeEnv = 'development';
+
+const plugins = [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: Infinity,
+    filename: 'vendor.bundle.js',
+  }),
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
+  }),
+  new webpack.NamedModulesPlugin(),
+];
+
+plugins.push(new webpack.HotModuleReplacementPlugin());
+
+
+module.exports = {
+  devtool: 'eval',
+  context: sourcePath,
+  entry: {
+    js: ['./index.jsx', 'webpack-hot-middleware/client?reload=true'],
+    vendor: ['react', 'immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
-  module: {
-	preLoaders: [
+  output: {
+    path: distPath,
+    filename: '[name].bundle.js',
+  },
+  module: {
+    rules: [
       {
-        test: /\.jsx$|\.js$/,
-        loader: 'eslint-loader',
-        include: __dirname + '/app',
-        exclude: /bundle\.js$/
-      }
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'file-loader',
+          query: {
+            name: '[name].[ext]',
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+      },
     ],
-    loaders: [
-       {test: /\.js$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
-       {test: /\.jsx$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
-       {test: /(\.css)$/, loaders: ['style', 'css']},
-       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
-       {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
-       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
-       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"},
-    ]
-  },
+  },
   resolve: {
-    extensions: ['', '.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+      sourcePath,
+    ],
+  },
+
+  plugins,
+  stats: {
+    colors: {
+      green: '\u001b[32m',
+    },
+  },
+
+  devServer: {
+    contentBase: './',
+    historyApiFallback: true,
+    port: 3000,
+    compress: false,
+    inline: true,
+    hot: true,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      timings: true,
+      version: false,
+      warnings: true,
+      colors: {
+        green: '\u001b[32m',
+      },
+    },
+  },
 };
