@@ -25,7 +25,7 @@ module.exports = {
   context: sourcePath,
   entry: {
     js: ['./index.jsx', 'webpack-hot-middleware/client?reload=true'],
-    vendor: ['react', 'immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
+    vendor: ['react', 'seamless-immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
   },
   output: {
     path: distPath,

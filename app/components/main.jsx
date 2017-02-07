@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Immutable from 'immutable';
 import { increment, decrement } from '../actions';
 
 class Main extends React.Component {
@@ -25,19 +24,19 @@ class Main extends React.Component {
       <b><a href="#" onClick={this.decrement}>Decrease</a></b>
       &nbsp;&nbsp;
       <b><a href="#" onClick={this.increment}>Increase</a></b>
-      <h3>{this.props.reducers.get('value')}</h3>
+      <h3>{this.props.value}</h3>
     </div>);
   }
 }
 
 Main.propTypes = {
-  reducers: React.PropTypes.instanceOf(Immutable.Map).isRequired,
+  value: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 
-function mapStateToProps(reducers) {
+function mapStateToProps(state) {
   return {
-    reducers,
+    value: state.value,
   };
 }
 

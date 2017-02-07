@@ -1,20 +1,16 @@
-import immutable from 'immutable';
+import immutable from 'seamless-immutable';
 import Constants from '../constants';
 
-const { Map } = immutable;
-
-const initialData = Map({ value: 0 });
+const initialData = immutable({ value: 0 });
 export default (state = initialData, action) => {
   switch (action.type) {
     case Constants.INCREMENT:
       {
-        const incrementedValue = state.get('value') + 1;
-        return state.set('value', incrementedValue);
+        return immutable.update(state, 'value', (x => x + 1));
       }
     case Constants.DECREMENT:
       {
-        const decrementedValue = state.get('value') - 1;
-        return state.set('value', decrementedValue);
+        return immutable.update(state, 'value', (x => x - 1));
       }
     default:
       {

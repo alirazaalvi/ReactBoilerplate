@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import immutable from 'seamless-immutable';
 import reducer from '../../reducers/MainReducer';
 import Constants from '../../constants';
 
@@ -6,7 +6,7 @@ import Constants from '../../constants';
 describe('reducers', () => {
   it('should return initial state', () => {
     expect(
-      reducer(undefined, {}).toJS(),
+      reducer(undefined, {}),
     ).toEqual({
       value: 0,
     });
@@ -19,7 +19,7 @@ describe('reducers', () => {
         data: {},
       });
 
-    expect(nextState).toEqual(fromJS({
+    expect(nextState).toEqual(immutable({
       value: 1,
     }));
   });
@@ -31,7 +31,7 @@ describe('reducers', () => {
         data: {},
       });
 
-    expect(nextState).toEqual(fromJS({
+    expect(nextState).toEqual(immutable({
       value: -1,
     }));
   });
