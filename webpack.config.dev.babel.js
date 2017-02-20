@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const path = require('path');
+import webpack from 'webpack';
+import path from 'path';
 
 const sourcePath = path.join(__dirname, './app');
 const distPath = path.join(__dirname, './dist/');
