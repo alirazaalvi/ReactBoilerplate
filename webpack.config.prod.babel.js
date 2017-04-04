@@ -46,7 +46,7 @@ module.exports = {
   devtool: 'source-map',
   context: sourcePath,
   entry: {
-    js: './index.jsx',
+    js: './Index.jsx',
     vendor: ['react', 'seamless-immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
   },
   output: {

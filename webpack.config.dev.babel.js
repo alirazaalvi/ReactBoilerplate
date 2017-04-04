@@ -24,7 +24,7 @@ module.exports = {
   devtool: 'eval',
   context: sourcePath,
   entry: {
-    js: ['./index.jsx', 'webpack-hot-middleware/client?reload=true'],
+    js: ['./Index.jsx', 'webpack-hot-middleware/client?reload=true'],
     vendor: ['react', 'seamless-immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
   },
   output: {
