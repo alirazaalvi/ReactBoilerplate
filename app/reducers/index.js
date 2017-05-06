@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import MainReducer from '../reducers/MainReducer';
 
 export default combineReducers({

@@ -47,7 +47,7 @@ module.exports = {
   context: sourcePath,
   entry: {
     js: './Index.jsx',
-    vendor: ['react', 'seamless-immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
+    vendor: ['react', 'immutable', 'react-dom', 'react-redux', 'redux', 'redux-thunk'],
   },
   output: {
     path: distPath,

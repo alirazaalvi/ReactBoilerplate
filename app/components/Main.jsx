@@ -36,7 +36,7 @@ Main.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    value: state.value,
+    value: state.get('value'),
   };
 }
 
