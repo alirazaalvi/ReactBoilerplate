@@ -1,4 +1,3 @@
-import immutable from 'seamless-immutable';
 import reducer from '../../reducers/MainReducer';
 import Constants from '../../constants';
 
@@ -6,10 +5,8 @@ import Constants from '../../constants';
 describe('reducers', () => {
   it('should return initial state', () => {
     expect(
-      reducer(undefined, {}),
-    ).toEqual({
-      value: 0,
-    });
+      reducer(undefined, {}).get('value'),
+    ).toEqual(0);
   });
 
   it('should return incremented value', () => {
@@ -19,9 +16,7 @@ describe('reducers', () => {
         data: {},
       });
 
-    expect(nextState).toEqual(immutable({
-      value: 1,
-    }));
+    expect(nextState.get('value')).toEqual(1);
   });
 
   it('should return decremented value', () => {
@@ -31,8 +26,6 @@ describe('reducers', () => {
         data: {},
       });
 
-    expect(nextState).toEqual(immutable({
-      value: -1,
-    }));
+    expect(nextState.get('value')).toEqual(-1);
   });
 });
