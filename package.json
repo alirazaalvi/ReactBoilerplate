@@ -20,7 +20,7 @@
     "open": "^0.0.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.1",
     "react-redux": "^5.0.5",
     "redux": "^3.7.1",
     "redux-immutable": "^4.0.0",
